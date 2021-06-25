@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.18/c3.min.css">
+    <link rel="stylesheet" href="all.css">
+</head>
+
+<body>
+    <style>
+        /*** CSS Reset ***/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/*** CSS 自訂 ***/
+*, *::after, *::before {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+  }
+  
+  html, body {
+    line-height: 1.5;
+  }
+  
+  img {
+    max-width: 100%;
+    display: block;
+  }
+  
+  body {
+    font-family: "Microsoft JhengHei";
+  }
+  
+  .addTicket-panel {
+    -webkit-box-shadow: 0px 3px 6px #00000029;
+            box-shadow: 0px 3px 6px #00000029;
+    border-radius: 12px;
+  }
+  
+  .addTicket-panel {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    max-width: 920px;
+    margin: 120px auto 100px;
+    padding: 60px 0;
+  }
+  
+  @media (max-width: 768px) {
+    .addTicket-panel {
+      margin: 0 auto;
+      padding-top: 0;
+      -webkit-box-shadow: none;
+              box-shadow: none;
+    }
+  }
+  
+  .addTicket-img, .addTicket-form {
+    width: 38%;
+  }
+  
+  @media (max-width: 768px) {
+    .addTicket-img, .addTicket-form {
+      width: 90%;
+    }
+  }
+  
+  .addTicket-img img {
+    margin: 0 auto 21px;
+  }
+  
+  @media (max-width: 768px) {
+    .addTicket-img img:nth-child(2) {
+      display: none;
+    }
+  }
+  
+  .title {
+    color: #00807E;
+    border-bottom: 3px solid #00807E;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 36px;
+  }
+  
+  .title span {
+    margin-right: 6px;
+  }
+  
+  .addTicket-form {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  
+  .addTicket-form .form-group {
+    margin-bottom: 16px;
+  }
+  
+  .addTicket-form label {
+    color: #00807E;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .addTicket-input {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  @media (max-width: 767px) {
+    .addTicket-input {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-box-align: start;
+          -ms-flex-align: start;
+              align-items: start;
+    }
+  }
+  
+  .addTicket-input input, .addTicket-input textarea, .addTicket-input select {
+    width: 72%;
+    text-indent: 0.5rem;
+    background-color: #F7F7F7;
+    color: #818A91;
+    font-size: 1rem;
+    border: none;
+    border-bottom: 1px solid #00807E;
+    min-height: 38px;
+  }
+  
+  @media (max-width: 767px) {
+    .addTicket-input input, .addTicket-input textarea, .addTicket-input select {
+      width: 100%;
+    }
+  }
+  
+  .addTicket-input textarea::-webkit-input-placeholder {
+    font-size: 1rem;
+  }
+  
+  .addTicket-input textarea:-ms-input-placeholder {
+    font-size: 1rem;
+  }
+  
+  .addTicket-input textarea::-ms-input-placeholder {
+    font-size: 1rem;
+  }
+  
+  .addTicket-input textarea::placeholder {
+    font-size: 1rem;
+  }
+  
+  .addTicket-input textarea {
+    padding-top: 8px;
+    min-height: 111px;
+  }
+  
+  .alert-message {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    margin-top: 3px;
+    color: #B21C01;
+    font-size: 0.85rem;
+  }
+  
+  .alert-message p {
+    width: 72%;
+  }
+  
+  @media (max-width: 767px) {
+    .alert-message p {
+      width: 100%;
+    }
+  }
+  
+  .alert-message span {
+    margin-left: 5px;
+    font-weight: bold;
+  }
+  
+  .addTicket-btn {
+    -ms-flex-item-align: end;
+        align-self: flex-end;
+    font-size: 1.25rem;
+    padding: 10px 40px;
+  }
+  
+  @media (max-width: 767px) {
+    .addTicket-btn {
+      -ms-flex-item-align: center;
+          -ms-grid-row-align: center;
+          align-self: center;
+    }
+  }
+  
+  .btn {
+    border: none;
+    background-color: #00807E;
+    color: #FFF;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .btn:hover {
+    background-color: #64C3BF;
+  }
+  
+  .main-content {
+    background-color: #F7F7F7;
+    padding-bottom: 100px;
+  }
+  
+  @media (max-width: 767px) {
+    .main-content {
+      padding-bottom: 30px;
+    }
+  }
+  
+  /* ADD CHART */
+  .seachAndChart{
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: flex-start; 
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 50px 0;
+  }
+  /* ADD CHART */
+
+  .search-area {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 60%;         /* ADD */
+    margin-right: auto; /* ADD */
+  }
+  
+  .search-area p {
+    color: #818A91;
+  }
+  
+  @media (max-width: 768px) {
+    /* ADD */
+    .seachAndChart{
+      flex-direction: column;
+      align-items: center;
+      max-width: 650px;
+    }
+    /* ADD */
+    .search-area {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      margin-right: 0;      /* ADD */
+      margin-bottom: 20px;  /* ADD */
+      width: 100%;          /* ADD */
+      padding: 0 15px;      /* ADD */
+    }
+  }
+  
+  .regionSearch {
+    /* width: 27.5%; */
+    width: 60%;  /* ADD */
+    min-height: 38px;
+    text-indent: 0.5rem;
+    color: #818A91;
+    font-size: 1rem;
+    border: 1px solid #CED4DA;
+    border-radius: 5px;
+    margin-right: 2.5%;
+  }
+  
+  @media (max-width: 768px) {
+    .regionSearch {
+      margin-right: 0;
+      margin-bottom: 10px;
+      width: 100%;  /* ADD */
+    }
+  }
+  
+  .ticketCard-area {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  
+  .ticketCard {
+    width: 31.3333%;
+    background-color: #fff;
+    -webkit-box-shadow: 0px 3px 6px #00000029;
+            box-shadow: 0px 3px 6px #00000029;
+    border: 1px solid #DEE2E6;
+    border-radius: 5px;
+    margin-bottom: 38px;
+    margin-right: 2%;
+  }
+  
+  @media (max-width: 768px) {
+    .ticketCard {
+      width: 46%;
+      margin: 0 2% 40px;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .ticketCard {
+      width: 90%;
+      margin: 0 5% 30px;
+    }
+  }
+  
+  .ticketCard-img {
+    position: relative;
+  }
+  
+  .ticketCard-img a {
+    display: block;
+    overflow: hidden;
+  }
+  
+  .ticketCard-img img {
+    width: 100%;
+    height: 180px;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  
+  .ticketCard-img img:hover {
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15);
+  }
+  
+  .ticketCard-region, .ticketCard-rank {
+    position: absolute;
+    border-radius: 0 5px 5px 0px;
+    color: #FFF;
+    text-align: center;
+  }
+  
+  .ticketCard-region {
+    top: -13px;
+    left: 0;
+    font-size: 1.25rem;
+    background-color: #64C3BF;
+    padding: 12px 20px;
+  }
+  
+  .ticketCard-rank {
+    bottom: -16px;
+    left: 0;
+    background-color: #00807E;
+    padding: 5px 8px;
+    min-width: 40px;
+  }
+  
+  .ticketCard-content {
+    padding: 20px;
+    height: calc(100% - 180px);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  
+  .ticketCard-name {
+    display: block;
+    text-decoration: none;
+    color: #00807E;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #00807E;
+    margin-bottom: 20px;
+  }
+  
+  .ticketCard-name:hover {
+    color: #64C3BF;
+  }
+  
+  .ticketCard-description {
+    color: #818A91;
+    margin-bottom: 32px;
+  }
+  
+  .ticketCard-info {
+    color: #00807E;
+    font-family: 'Roboto', sans-serif;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  
+  .ticketCard-num {
+    font-weight: bold;
+  }
+  
+  .ticketCard-price {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  .ticketCard-price span {
+    font-size: 2rem;
+  }
+  
+  .cantFind-area {
+    display: none;
+    margin-top: 70px;
+    text-align: center;
+  }
+  
+  .cantFind-area h3 {
+    color: #00807E;
+    font-size: 2rem;
+    margin-bottom: 50px;
+    font-weight: bold;
+  }
+  
+  .cantFind-area img {
+    margin: 0 auto;
+  }
+  
+  @media (max-width: 768px) {
+    .cantFind-area {
+      margin-top: 0px;
+    }
+  }
+    </style>
+    <section class="addTicket-panel">
+        <div class="addTicket-img">
+            <img src="https://i.imgur.com/iRssPpJ.png" alt="">
+            <img src="https://i.imgur.com/vJt0znH.png" alt="">
+        </div>
+        <form action="" class="addTicket-form">
+            <h1 class="title"><span><i class="fas fa-plus-circle"></i></span>新增旅遊套票</h1>
+            <div class="form-group">
+                <div class="addTicket-input">
+                    <label for="ticketName">套票名稱</label>
+                    <input type="text" id="ticketName" class="ticketName" placeholder="請填寫套票名稱" name="套票名稱">
+                </div>
+                <div class="alert-message">
+                    <p id="ticketName-message" data-message="套票名稱">
+                        <!--    <i class="fas fa-exclamation-circle"></i>
+                          <span>必填!</span> -->
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="addTicket-input">
+                    <label for="ticketImgUrl">圖片網址</label>
+                    <input type="text" id="ticketImgUrl" class="ticketImgUrl" placeholder="請填寫圖片網址" name="圖片網址">
+                </div>
+                <div class="alert-message">
+                    <p id="ticketImgUrl-message" data-message="圖片網址">
+                        <!-- <i class="fas fa-exclamation-circle"></i>
+                            <span>必填!</span> -->
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="addTicket-input">
+                    <label for="ticketRegion">景點地區</label>
+                    <select id="ticketRegion" class="ticketRegion" name="景點地區">
+                        <option value="" disabled selected hidden>請選擇景點地區</option>
+                        <option value="台北">台北</option>
+                        <option value="台中">台中</option>
+                        <option value="高雄">高雄</option>
+                    </select>
+                </div>
+                <div class="alert-message">
+                    <p id="ticketRegion-message" data-message="景點地區">
+                        <!-- <i class="fas fa-exclamation-circle"></i>
+                            <span>必填!</span> -->
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="addTicket-input">
+                    <label for="ticketPrice">套票金額</label>
+                    <input type="number" id="ticketPrice" class="ticketPrice" placeholder="請填寫套票金額" name="套票金額" min="0">
+                </div>
+                <div class="alert-message">
+                    <p id="ticketPrice-message" data-message="套票金額">
+                        <!-- <i class="fas fa-exclamation-circle"></i>
+                            <span>必填!</span> -->
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="addTicket-input">
+                    <label for="ticketNum">套票組數</label>
+                    <input type="number" id="ticketNum" class="ticketNum" placeholder="請填寫套票組數" name="套票組數" min="1">
+                </div>
+                <div class="alert-message">
+                    <p id="ticketNum-message" data-message="套票組數">
+                        <!-- <i class="fas fa-exclamation-circle"></i>
+                            <span>必填!</span> -->
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="addTicket-input">
+                    <label for="ticketRate">套票星級</label>
+                    <input type="number" id="ticketRate" class="ticketRate" placeholder="請填寫套票星級" name="套票星級" min="1"
+                        max="10">
+                </div>
+                <div class="alert-message">
+                    <p id="ticketRate-message" data-message="套票星級">
+                        <!-- <i class="fas fa-exclamation-circle"></i>
+                            <span>必填!</span> -->
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="addTicket-input">
+                    <label for="ticketDescription">套票描述</label>
+                    <textarea name="套票描述" id="ticketDescription" class="ticketDescription"
+                        placeholder="請填寫套票描述 (限 100 字)"></textarea>
+                </div>
+                <div class="alert-message">
+                    <p id="ticketDescription-message" data-message="套票描述">
+                        <!-- <i class="fas fa-exclamation-circle"></i>
+                            <span>必填!</span> -->
+                    </p>
+                </div>
+            </div>
+            <input type="button" class="addTicket-btn btn" value="新增套票">
+        </form>
+    </section>
+    <section class="main-content">
+        <!-- 搜尋區 -->
+        <div class="seachAndChart">
+            <div class="search-area">
+                <select name="" class="regionSearch">
+                    <option value="地區搜尋" disabled selected hidden>地區搜尋</option>
+                    <option value="全部地區">全部地區</option>
+                    <option value="台北">台北</option>
+                    <option value="台中">台中</option>
+                    <option value="高雄">高雄</option>
+                </select>
+                <p id="searchResult-text">本次搜尋共 <span class="searchTotal">3</span> 筆資料</p>
+            </div>
+            <div class="chart" style="width: 180px; height: 180px;"></div>
+        </div>
+        <!-- 套票卡片區 -->
+        <ul class="ticketCard-area">
+            <li class="ticketCard">
+                <div class="ticketCard-img">
+                    <a href="#">
+                        <img src="https://i.imgur.com/QXa1fMZ.png" alt="">
+                    </a>
+                    <div class="ticketCard-region">高雄</div>
+                    <div class="ticketCard-rank">10</div>
+                </div>
+                <div class="ticketCard-content">
+                    <div>
+                        <h3>
+                            <a href="#" class="ticketCard-name">綠島自由行套裝行程</a>
+                        </h3>
+                        <p class="ticketCard-description">
+                            嚴選超高CP值綠島自由行套裝行程，多種綠島套裝組合。
+                        </p>
+                    </div>
+                    <div class="ticketCard-info">
+                        <p class="ticketCard-num">
+                            <span><i class="fas fa-exclamation-circle"></i></span>
+                            剩下最後 <span id="ticketCard-num"> 87 </span> 組
+                        </p>
+                        <p class="ticketCard-price">
+                            TWD <span id="ticketCard-price">$1400</span>
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="ticketCard">
+                <div class="ticketCard-img">
+                    <a href="#">
+                        <img src="https://i.imgur.com/4UHm8WX.png" alt="">
+                    </a>
+                    <div class="ticketCard-region">台北</div>
+                    <div class="ticketCard-rank">2</div>
+                </div>
+                <div class="ticketCard-content">
+                    <div>
+                        <h3>
+                            <a href="#" class="ticketCard-name">清境高空觀景步道</a>
+                        </h3>
+                        <p class="ticketCard-description">
+                            清境農場青青草原數十公頃碧草，這些景觀豐沛了清境觀景步道的風格，也涵養它無可取代的特色。
+                        </p>
+                    </div>
+                    <div class="ticketCard-info">
+                        <div class="ticketCard-num">
+                            <p>
+                                <span><i class="fas fa-exclamation-circle"></i></span>
+                                剩下最後 <span id="ticketCard-num"> 99 </span> 組
+                            </p>
+                        </div>
+                        <p class="ticketCard-price">
+                            TWD <span id="ticketCard-price">$240</span>
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="ticketCard">
+                <div class="ticketCard-img">
+                    <a href="#">
+                        <img src="https://i.imgur.com/H97Wgfn.png" alt="">
+                    </a>
+                    <div class="ticketCard-region">台中</div>
+                    <div class="ticketCard-rank">7</div>
+                </div>
+                <div class="ticketCard-content">
+                    <div>
+                        <h3>
+                            <a href="#" class="ticketCard-name">山林悠遊套票</a>
+                        </h3>
+                        <p class="ticketCard-description">
+                            山林悠遊套票，結合南投清境高空步道、雙龍瀑布七彩吊橋、瑞龍瀑布園區之熱門景點。
+                        </p>
+                    </div>
+                    <div class="ticketCard-info">
+                        <div class="ticketCard-num">
+                            <p>
+                                <span><i class="fas fa-exclamation-circle"></i></span>
+                                剩下最後 <span id="ticketCard-num"> 20 </span> 組
+                            </p>
+                        </div>
+                        <p class="ticketCard-price">
+                            TWD <span id="ticketCard-price">$1765</span>
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <!-- 查無關鍵字區 -->
+        <div class="cantFind-area">
+            <h3>查無此關鍵字資料</h3>
+            <img src="https://i.imgur.com/dZI8FJQ.png" alt="">
+        </div>
+    </section>
+
+    <!-- JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.18/c3.min.js"></script>
+    <script src="https://unpkg.com/axios@0.20.0-0/dist/axios.min.js"></script>
+    <script src="/js/all-reference.js"></script>
+</body>
+
+</html>
